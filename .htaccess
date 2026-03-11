@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# Skip backend folder
+
+RewriteRule ^ensafelms(/|$) - [L]
+
+# Allow real files
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# SPA fallback
+
+RewriteRule ^ index.html [L] </IfModule>
