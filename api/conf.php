@@ -2,10 +2,11 @@
 <?php
 
 
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'ensafelms');
+define('DB_HOST', '3.108.240.49');
+define('DB_PORT',3306);
+define('DB_USER', 'ensafe_user');
+define('DB_PASS', 'StrongPassword123');
+define('DB_NAME', 'ensafe_db');
 define('JWT_SECRET', 'en$@felm$');
 define('TOKEN_EXPIRY', 2592000); //hours for 30 days
 

@@ -38,8 +38,24 @@ VALUES (?,?,?)
 ");
 
 $stmt->bind_param("sss",$user_id,$course_id,$ref_id);
-$stmt->execute();
+//$stmt->execute();
+//$res=$stmt->execute();
 
+try {
+    if($stmt->execute()) {
+         $subscription_id = $ref_id;
+    }
+} catch (mysqli_sql_exception $e) {
+    if($e->getCode() == 1062) {
+        http_response_code(409);
+        echo json_encode(["success"=>false,"message"=>"User already subscribed to this course"]);
+        exit;
+    } else {
+        http_response_code(500);
+        echo json_encode(["success"=>false,"message"=>"Database error"]);
+        exit;
+    }
+}
 echo json_encode([
     "subscription_registration_status"=>true,
     "subscription_reference_id"=>$ref_id
