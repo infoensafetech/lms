@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# Token
+RewriteRule ^token/?$          kp_endpoints/token/index.php    [L]
+RewriteRule ^token/refresh/?$  kp_endpoints/token/refresh.php  [L]
+
+# Course
+RewriteRule ^course/subscribe/?$  kp_endpoints/course/subscribe.php  [L]
+RewriteRule ^course/access/?$     kp_endpoints/course/access.php     [L]
+
+# Student Progress
+RewriteRule ^nm/api/student/progress/?$  kp_endpoints/student/progress.php  [L]
+
+
+RewriteRule ^login/?$          login.php    [L]
+RewriteRule ^changepwd/?$      changepwd.php    [L]
+RewriteRule ^register/?$       register.php    [L]
+RewriteRule ^token/?$          token.php    [L]
+

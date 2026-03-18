@@ -13,6 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }   
 
 $raw=$_POST;
+
+if (empty($raw)) {
+    $input = file_get_contents("php://input");
+    $raw = json_decode($input, true);
+}
+
+
 if (empty($raw)) { 
     http_response_code(400);
     echo json_encode(["success" => false, "message" => "Invalid JSON format"]);
