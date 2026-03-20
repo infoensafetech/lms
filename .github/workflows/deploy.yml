@@ -1,0 +1,32 @@
+name: 🚀 Deploy LMS to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🚀 Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /var/www/html
+
+            echo "📥 Pulling latest code..."
+            git reset --hard
+            git pull origin main
+
+            echo "🔧 Setting permissions..."
+            sudo chown -R ec2-user:ec2-user /var/www/html
+
+            echo "✅ Deployment completed"
