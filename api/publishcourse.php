@@ -23,7 +23,7 @@ function getNMToken() {
     $ch = curl_init();
 
     curl_setopt_array($ch, [
-        CURLOPT_URL => NM_SANDBOX_URL."/api/v1/lms/client/auth/login",
+        CURLOPT_URL => NM_SANDBOX_URL."/api/v1/lms/client/token/",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
         CURLOPT_HTTPHEADER => ["Content-Type: application/json"],
